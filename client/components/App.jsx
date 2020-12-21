@@ -1,10 +1,8 @@
 import React from 'react';
+import AdyenDropin from './AdyenDropin.jsx'
 
 export default class App extends React.Component {
   render() {
-    return (
-     <div style={{textAlign: 'center'}}>
-        <h1>Hello World!</h1>
-      </div>);
+    return (<AdyenDropin/>)
   }
 }

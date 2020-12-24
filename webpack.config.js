@@ -29,7 +29,7 @@ const proxy = (env) => {
                target: 'https://sandbox.101digital.io',
                secure: false,
                changeOrigin: true,
-               pathRewrite: {'^/api' : 'payment-service/1.0.0-SNAPSHOT'}
+               pathRewrite: {'^/api' : 'payment-service-bc/1.0.0-SNAPSHOT'}
            }
          }
       break;

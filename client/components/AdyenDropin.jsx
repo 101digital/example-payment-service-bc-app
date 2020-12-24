@@ -29,7 +29,6 @@ const configuration = {
               // Drop-in handles the action object from the /payments response
               dropin.handleAction(response.action);
             } else {
-              console.log(response.data)
               dropin.setStatus('success', { message: 'Payment successful!' });
 
               //showFinalResult(response);
@@ -42,6 +41,9 @@ const configuration = {
     onAdditionalDetails: (state, dropin) => {
       console.log(state)
     },
+    onError(error) {
+      console.error(error)
+    },
     paymentMethodsConfiguration: {
       card: { // Example optional configuration for Cards
         hasHolderName: true,
@@ -49,7 +51,20 @@ const configuration = {
         enableStoreDetails: true,
         hideCVC: false, // Change this to true to hide the CVC field for stored cards
         name: 'Credit or debit card'
-      }
+      },
+      paypal: {
+        environment: 'test',
+        countryCode: 'NL',
+        amount: {
+          currency: 'AUD',
+          value: 200
+        },
+        intent: 'capture',
+        onCancel: (data, dropin) => {
+          console.log(data)
+          dropin.setStatus('ready')
+        },
+      },
     }
    };
 

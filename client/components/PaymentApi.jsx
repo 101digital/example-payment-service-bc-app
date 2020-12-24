@@ -189,6 +189,7 @@ export const makePayment =  async (state) => {
 
   let browserInfo = state.data.browserInfo
 
+  console.log(JSON.stringify(browserInfo))
 
 
   if (state.data.paymentMethod.encryptedCardNumber && browserInfo) {
@@ -198,14 +199,15 @@ export const makePayment =  async (state) => {
      let resp = await axios.post('http://localhost:4000/api/payments',
       buildPaymentData(state, customFields.concat(extraCustomFields)))
 
-     //console.log(resp)
      if (propExists(resp,'data.Data.Initiation.SupplementaryData.CustomFields')) {
       let actions = resp.data.Data.Initiation.SupplementaryData.CustomFields.filter(e=>e.Key=='adyen-action')
       if (actions[0]) {
         let data = JSON.parse(actions[0].Value)
         resp.action = data
         console.log(data)
+
         localStorage.setItem('data', JSON.stringify(data))
+        localStorage.setItem('DomesticPaymentId', resp.data.Data.DomesticPaymentId)
 
         return {action: data}
       }

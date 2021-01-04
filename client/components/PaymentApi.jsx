@@ -7,7 +7,7 @@ const buildPaymentData = (state, customFields) => {
   "Data": {
     "Initiation": {
       "EndToEndIdentification": "90000246_1606899633",
-      "LocalInstrument": "CARDPAYMENT",
+      "LocalInstrument": "CARD_PAYMENT",
       "RequestedDateTime": "2017-06-05T15:15:13.234Z",
       "InstructedAmount": {
         "Amount": 200,
@@ -227,8 +227,10 @@ export const makePayment =  async (state) => {
         let data = JSON.parse(actions[0].Value)
         resp.action = data
         console.log(data)
-        localStorage.setItem('data', JSON.stringify(data))
-       // cookie.save('payment_data', data.paymentData, { path: '/', domain: 'localhost:4000' });
+
+
+       localStorage.setItem('data', JSON.stringify(data))
+       localStorage.setItem('DomesticPaymentId', resp.data.Data.DomesticPaymentId)
 
         return {action: data, paymentData: data.paymentData}
       }
@@ -248,8 +250,10 @@ export const makePayment =  async (state) => {
         let data = JSON.parse(actions[0].Value)
         resp.action = data
         console.log(data)
+
         localStorage.setItem('data', JSON.stringify(data))
-       // cookie.save('payment_data', data.paymentData, { path: '/', domain: 'localhost:4000' });
+        localStorage.setItem('DomesticPaymentId', resp.data.Data.DomesticPaymentId)
+
 
         return {action: data, paymentData: data.paymentData}
       }

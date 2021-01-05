@@ -29,13 +29,13 @@
    
 
 
-## Getting start <a name="getting-start"></a>
+## Getting start <a id="getting-start"></a>
 
-1. Clone code <a name="code"></a>
+1. Clone code <a id="clone"></a>
 ```
 git clone git@github.com:101digital/example-payment-service-bc-app.git /tmp/web-client
 ```
-2. Setup local environment <a name="settup"></a>
+2. Setup local environment <a id="setup"></a>
 ```
 cd tmp/web-client
 yarn install
@@ -44,11 +44,11 @@ yarn install
 ```
 yarn start
 ```
-4. Open http://localhost:4000 And start testing using Test Credicard from https://docs.adyen.com/development-resources/test-cards/test-card-numbers <a name="test"></a>
+4. Open http://localhost:4000 And start testing using Test Credicard from https://docs.adyen.com/development-resources/test-cards/test-card-numbers <a id="test"></a>
 
 5. Test with [ive demo page](ttps://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiMGVkMDZhZDEtODM4Zi00MmRiLTk0MjMtNTJmNDY5MDI3YzlhIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYwOTczOTk2NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.Ygs6ktTDBa-5jI7kizhffZWRcrn0e2-SHvcXW9OZJDo)
 
-## Psudo Code <a name="code"></a> 
+## Psudo Code <a id="code"></a> 
 See also: [`src/index.js`](https://github.com/101digital/example-payment-service-bc-app/blob/master/src/pages/index.js)
 
 1. WebDropIn config

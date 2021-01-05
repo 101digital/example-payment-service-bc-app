@@ -9,7 +9,8 @@
    2.1. [Get avaialbe payment methods](#paymentMethods)  
    2.2. [Make payment](#makePayment)   
    2.3. [Sumit additional details](#submitAdditionalDetails)
-3. [Examples](#examples)  
+3. [Examples](#examples) 
+   3.1. [Available payment method response](#paymentMethodsResponse) 
    3.1. [Simple Card payment](#card)    
    3.2. [3D Secure Card payment](#card3d)        
    3.3. [Poli payment ](#poli)     
@@ -125,9 +126,7 @@ const makeDetailsCall = async (data) => {
 ```
 
 # Examples <a id="examples"></a>
-1. Get Payment Method `GET /paymentMethods`
----
-
+1. Get Payment Method `GET /paymentMethods` <a id ="paymentMethodsResponse"></a>  
 **Response**
 ```json
 {

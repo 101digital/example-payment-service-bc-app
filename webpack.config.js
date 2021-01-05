@@ -1,6 +1,16 @@
 
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack');
+
 const path = require('path');
 const fs = require('fs');
+const dotenv = require('dotenv').config({path: __dirname + '/.env'});
+const envConfig =  dotenv.parsed
+
+for (const k in envConfig) {
+  process.env[k] = JSON.stringify(envConfig[k])
+}
+
 
 const fileList =(dir) =>{
   return fs.readdirSync(dir).reduce(function(list, file) {
@@ -11,31 +21,21 @@ const fileList =(dir) =>{
 }
 
 
-let htmlPageNames =
-  fileList(path.resolve(__dirname, 'client', 'pages'))
+const htmlPageNames =
+  fileList(path.resolve(__dirname, 'src', 'pages'))
       .filter (filename => filename.endsWith(".html"))
       .map(filename => path.basename(filename))
       .map(filename => filename.replace(".html", ""))
 
 
-let entry  = {
-  main: './client/index.js',
-}
+const entry  = {}
+htmlPageNames.forEach (page => entry[page] = `./src/pages/${page}.js`)
 
-htmlPageNames.forEach (page => entry[page] = `./client/pages/${page}.js`)
-
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template:  path.resolve(__dirname, 'client', './index.html'),
-  filename: 'index.html',
-  inject: 'body',
-  chunks: ['main']
-})
 
 
 let multipleHtmlPlugins = htmlPageNames.map(name => {
   return new HtmlWebpackPlugin({
-    template:  path.resolve(__dirname, 'client/pages', `./${name}.html`),
+    template:  path.resolve(__dirname, 'src/pages', `./${name}.html`),
     filename: `${name}.html`,
     chunks: [`${name}`]
   })
@@ -43,37 +43,15 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
 
 const proxy = (env) => {
   switch(env) {
-    case 'bc':
-        return  {
-          '/api':
-           {
-               target: 'http://localhost:4478',
-               changeOrigin: true,
-               pathRewrite: {'^/api' : ''}
-           }
-         }
-
-    case 'sandbox':
-      return  {
-          '/api':
-           {
-               target: 'https://sandbox.101digital.io',
-               secure: false,
-               changeOrigin: true,
-               pathRewrite: {'^/api' : 'payment-service-bc/1.0.0'}
-           }
-         }
-      break;
       default:
-          return  {
-            '/api':
-             {
-                 target: 'http://localhost:4477',
-                 changeOrigin: true,
-                 pathRewrite: {'^/api' : ''}
-             }
+        return  {
+          '/payment-service-bc/1.0.0':
+           {
+               target: envConfig['REACT_APP_REMOTE_HOST'],
+               secure: false,
+               changeOrigin: true
            }
-
+         }
   }
 }
 
@@ -101,5 +79,8 @@ module.exports = (env) => {return {
   },
 
   mode: 'development',
-  plugins: [HtmlWebpackPluginConfig].concat(multipleHtmlPlugins)
+  plugins: [ new webpack.DefinePlugin({"process.env": process.env})].concat(multipleHtmlPlugins)
  }};
+
+
+ //new webpack.DefinePlugin({"process.env": dotenv.parsed})

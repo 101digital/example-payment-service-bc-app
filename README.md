@@ -1,5 +1,6 @@
 # Example Payment Service BC Client
 [Live demo page https://sandbox-pay.101digital.io/invoices?sharingKey=...](https://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiZTI4YmM1ZjMtOTc4OC00YTBkLTgzM2YtMTRhZjY3NWExOWJmIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYxMjQyMDY4NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.UAZLF94J86r-6OpFVYkmCjZ1B867YiloP0cBCIxpQGI)
+[Swagger documents](https://101digital.apicafe.io/apis/platform-services/payment-service-bc)
 # Table of Contents
 1. [Getting start](#getting-start)  
    1.1. [Get code](#clone)      

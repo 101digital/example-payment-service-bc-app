@@ -18,11 +18,14 @@
    2.3. [Sumit additional details](#submitAdditionalDetails)   
    
 3. [Examples](#examples)
-   3.1. [Card](#card)
+
+   3.1. [Simple Card payment](#card)
    
-   3.2. [Poli](#poli)
+   3.2. [3D Secure Card payment](#card)
+      
+   3.3. [Poli payment ](#poli)
    
-   3.3. [Paypal](#paypal)
+   3.4. [Paypal payment](#paypal)
    
 
 
@@ -102,7 +105,7 @@ const configuration = {
     }
    };
 ```
-2. Get available payment method
+2. Get available payment method <a id="paymentMethods"></a>
 ```
 const getPaymmentMethod = async ()=> {
   let resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/paymentMethods?documentId=${process.env.REACT_APP_DOCUMENT_ID}&documentType=${process.env.REACT_APP_DOCUMENT_TYPE}`)
@@ -110,7 +113,7 @@ const getPaymmentMethod = async ()=> {
 }
 ```
 
-3. Make Payment
+3. Make Payment<a id="makePayment"></a>
 ```
 const makePayment = async (state) => {
 
@@ -128,7 +131,7 @@ const makePayment = async (state) => {
 
 }
 ```
-4. Submit additional payment detail
+4. Submit additional payment detail<a id="submitAdditionalDettails"></a>
 ```
 const makePayment = async (state) => {
 
@@ -148,3 +151,94 @@ const makePayment = async (state) => {
 ```
 
 ## Examples <a id="examples"></a>
+1. Get Payment Method `GET /paymentMethods`
+
+Response: 
+```
+ss
+```
+
+2. Simple Card  <a id="card"></a>
+   Init payment `POST /payments`
+   
+    Request Body:
+    ```
+    {}
+    ```
+    Response Body   
+    ```
+    {}
+    ```
+
+2. Card with 3D secure <a id="card3d"></a>
+
+  Init payment `POST /payments`
+   
+    Request Body:
+    ```
+    {}
+    ```
+    Response Body   
+    ```
+    {}
+    ```
+
+ Complete payment `POST /payments/details`
+   
+    Request Body:
+    ```
+    {}
+    ```
+    Response Body   
+    ```
+    {}
+    ```
+
+3. Poli <a id="poli"></a>
+ Init payment `POST /payments`
+   
+    Request Body:
+    ```
+    {}
+    ```
+    Response Body   
+    ```
+    {}
+    ```
+
+ Complete payment `POST /payments/details`
+   
+    Request Body:
+    ```
+    {}
+    ```
+    Response Body   
+    ```
+    {}
+    ```
+
+
+4. Paypal <a id="paypal"></a>
+ Init payment `POST /payments`
+   
+    Request Body:
+    ```
+    {}
+    ```
+    Response Body   
+    ```
+    {}
+    ```
+
+ Complete payment `POST /payments/details`
+   
+    Request Body:
+    ```
+    {}
+    ```
+    Response Body   
+    ```
+    {}
+    ```
+
+

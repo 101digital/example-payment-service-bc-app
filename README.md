@@ -3,8 +3,8 @@
 # Table of Contents
 1. [Getting start](#getting-start)
 2. [Psudo Code ](#code)
-3. [Example](#examples)
-4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+3. [Examples](#examples)
+
 
 ## Getting start <a name="getting-start"></a>
 
@@ -27,7 +27,62 @@ yarn start
 
 ## Psudo Code <a name="code"></a> 
 See also: [`src/index.js`](https://github.com/101digital/example-payment-service-bc-app/blob/master/src/pages/index.js)
-1. Get available payment method
+
+1. WebDropIn config
+```
+const configuration = {
+    paymentMethodsResponse: {}, // The `/paymentMethods` response from the server.
+    clientKey: process.env.REACT_APP_ADYEN_API_KEY , // Web Drop-in versions before 3.10.1 use originKey instead of clientKey.
+    locale: "en-US",
+    environment: "test",
+    onSubmit: (state, dropin) => {
+        console.log(state)
+        // Your function calling your server to make the `/payments` request
+        makePayment(state)
+          .then(response => {
+            if (response.paymentId) {
+                localStorage.setItem('paymentId', response.paymentId) //Store paymentId in localstore for next API call
+            }
+            console.log(response)
+
+            if (response.action) {
+              // Drop-in handles the action object from the /payments response
+                dropin.handleAction(response.action);
+            } else {
+              dropin.setStatus('success', { message: 'Payment successful!' });
+
+            }
+          })
+          .catch(error => {
+            throw Error(error);
+          });
+      },
+    onAdditionalDetails: (state, dropin) => {
+      if (state) {
+        state.data.paymentId = localStorage.getItem('paymentId') || ''
+
+        makeDetailsCall(state.data)
+        .then(response => {
+          console.log(response)
+          if (response.action) {
+            // Drop-in handles the action object from the /payments response
+            dropin.handleAction(response.action);
+          } else {
+            // Your function to show the final result to the shopper
+            dropin.setStatus('success', { message: 'Payment status: ' + response.status });
+          }
+        })
+        .catch(error => {
+          throw Error(error);
+        });
+      }
+    },
+    onError(error) {
+      console.error(error)
+    }
+   };
+```
+2. Get available payment method
 ```
 const getPaymmentMethod = async ()=> {
   let resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/paymentMethods?documentId=${process.env.REACT_APP_DOCUMENT_ID}&documentType=${process.env.REACT_APP_DOCUMENT_TYPE}`)
@@ -35,7 +90,7 @@ const getPaymmentMethod = async ()=> {
 }
 ```
 
-2. Make Payment
+3. Make Payment
 ```
 const makePayment = async (state) => {
 

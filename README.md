@@ -2,8 +2,28 @@
 
 # Table of Contents
 1. [Getting start](#getting-start)
+
+   1.1. [Get code](#clone)   
+   
+   1.2. [Setup local environment](#setup)
+   
+   1.3. [Testing](#test)
+   
 2. [Psudo Code ](#code)
+
+   2.1. [Get avaialbe payment methods](#paymentMethod)
+   
+   2.2. [Make payment](#makePaymen)
+   
+   2.3. [Sumit additional details](#submitAdditionalDetails)   
+   
 3. [Examples](#examples)
+   3.1. [Card](#card)
+   
+   3.2. [Poli](#poli)
+   
+   3.3. [Paypal](#paypal)
+   
 
 
 ## Getting start <a name="getting-start"></a>

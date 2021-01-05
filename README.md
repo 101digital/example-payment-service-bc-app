@@ -197,10 +197,10 @@ const makeDetailsCall = async (data) => {
 }
 ```
 
-2. Simple Card  <a id="card"></a>
+2. **Simple Card**  <a id="card"></a>  
 ---
 
-   Init payment `POST /payments`
+   **Init payment `POST /payments`**  
    **Request Body**:
    
    ```json
@@ -240,10 +240,10 @@ const makeDetailsCall = async (data) => {
 }
 ``` 
 
-2. Card with 3D secure <a id="card3d"></a>
+2. **Card with 3D secure** <a id="card3d"></a>  
 
   Init payment `POST /payments`       
-      **Request Body**:
+      **Request Body**:  
 ```json
 {
         "documentId": "dkjJHFJ87238476FDG",
@@ -308,7 +308,7 @@ const makeDetailsCall = async (data) => {
 }
 ``` 
 
-Response Body:
+**Response Body**:
 ```json
 {
   "paymentId": "d2322d8c-2a29-41f2-bc4c-26e9cb4bd03e",
@@ -319,8 +319,8 @@ Response Body:
 }
 ```  
 
-3. Poli <a id="poli"></a>
- **Init payment `POST /payments`**
+3. **POLI** <a id="poli"></a>  
+ **Init payment `POST /payments`**  
     **Request Body**:
     ```json
    {"documentId":"dkjJHFJ87238476FDG","documentType":"INVOICE","paymentMethod":{"type":"poli"},"origin":"http://localhost:4000","returnUrl":"http://localhost:4000/checkout.html","redirectFromIssuerMethod":"GET"}
@@ -352,8 +352,8 @@ Response Body:
 ```    
 
 
-4. Paypal <a id="paypal"></a>
- **Init payment `POST /payments`**
+4. **PAYPAL** <a id="paypal"></a>  
+ **Init payment `POST /payments`**  
     **Request Body**:
     ```json
     {
@@ -386,7 +386,7 @@ Response Body:
    }
     ```
      
- **Complete payment `POST /payments/details`**
+ **Complete payment `POST /payments/details`**  
     **Request Body**:
 ```json
 {

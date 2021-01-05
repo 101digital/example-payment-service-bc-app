@@ -1,35 +1,22 @@
 # Example Payment Service BC Client
 
 # Table of Contents
-1. [Getting start](#getting-start)
-
-   1.1. [Get code](#clone)   
-   
-   1.2. [Setup local environment](#setup)
-   
+1. [Getting start](#getting-start)  
+   1.1. [Get code](#clone)      
+   1.2. [Setup local environment](#setup)   
    1.3. [Testing](#test)
-   
-2. [Psudo Code ](#code)
-
-   2.1. [Get avaialbe payment methods](#paymentMethods)
-   
-   2.2. [Make payment](#makePayment)
-   
-   2.3. [Sumit additional details](#submitAdditionalDetails)   
-   
-3. [Examples](#examples)
-
-   3.1. [Simple Card payment](#card)
-   
-   3.2. [3D Secure Card payment](#card3d)
-      
-   3.3. [Poli payment ](#poli)
-   
-   3.4. [Paypal payment](#paypal)
-   
+2. [Psudo Code ](#code)  
+   2.1. [Get avaialbe payment methods](#paymentMethods)  
+   2.2. [Make payment](#makePayment)   
+   2.3. [Sumit additional details](#submitAdditionalDetails)
+3. [Examples](#examples)  
+   3.1. [Simple Card payment](#card)    
+   3.2. [3D Secure Card payment](#card3d)        
+   3.3. [Poli payment ](#poli)     
+   3.4. [Paypal payment](#paypal)   
 
 
-## Getting start <a id="getting-start"></a>
+# Getting start <a id="getting-start"></a>
 
 1. Clone code <a id="clone"></a>
 ```
@@ -48,7 +35,7 @@ yarn start
 
 5. Test with [live demo page](https://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiZTI4YmM1ZjMtOTc4OC00YTBkLTgzM2YtMTRhZjY3NWExOWJmIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYxMjQyMDY4NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.UAZLF94J86r-6OpFVYkmCjZ1B867YiloP0cBCIxpQGI)
 
-## Psudo Code <a id="code"></a> 
+# Psudo Code <a id="code"></a> 
 See also: [`src/index.js`](https://github.com/101digital/example-payment-service-bc-app/blob/master/src/pages/index.js)
 
 1. WebDropIn config
@@ -137,7 +124,7 @@ const makeDetailsCall = async (data) => {
 }
 ```
 
-## Examples <a id="examples"></a>
+# Examples <a id="examples"></a>
 1. Get Payment Method `GET /paymentMethods`
 ---
 

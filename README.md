@@ -1,6 +1,12 @@
 # Example Payment Service BC Client
 
-## Getting start
+# Table of Contents
+1. [Getting start](#getting-start)
+2. [Psudo Code ](#code)
+3. [Example](#examples)
+4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+
+## Getting start <a name="getting-start"></a>
 
 1. Clone code 
 ```
@@ -19,7 +25,7 @@ yarn start
 
 5. Test with [ive demo page](ttps://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiMGVkMDZhZDEtODM4Zi00MmRiLTk0MjMtNTJmNDY5MDI3YzlhIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYwOTczOTk2NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.Ygs6ktTDBa-5jI7kizhffZWRcrn0e2-SHvcXW9OZJDo)
 
-## Coding 
+## Psudo Code <a name="code"></a> 
 See also: [`src/index.js`](https://github.com/101digital/example-payment-service-bc-app/blob/master/src/pages/index.js)
 1. Get available payment method
 ```
@@ -65,3 +71,5 @@ const makePayment = async (state) => {
 
 }
 ```
+
+## Examples <a id="examples"></a>

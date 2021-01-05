@@ -52,7 +52,7 @@ yarn start
 See also: [`src/index.js`](https://github.com/101digital/example-payment-service-bc-app/blob/master/src/pages/index.js)
 
 1. WebDropIn config
-```
+```javascript
 const configuration = {
     paymentMethodsResponse: {}, // The `/paymentMethods` response from the server.
     clientKey: process.env.REACT_APP_ADYEN_API_KEY , // Web Drop-in versions before 3.10.1 use originKey instead of clientKey.
@@ -106,7 +106,7 @@ const configuration = {
    };
 ```
 2. Get available payment method <a id="paymentMethods"></a>
-```
+```javascript
 const getPaymmentMethod = async ()=> {
   let resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/paymentMethods?documentId=${process.env.REACT_APP_DOCUMENT_ID}&documentType=${process.env.REACT_APP_DOCUMENT_TYPE}`)
   return resp.data
@@ -114,7 +114,7 @@ const getPaymmentMethod = async ()=> {
 ```
 
 3. Make Payment<a id="makePayment"></a>
-```
+```javascript
 const makePayment = async (state) => {
 
   let resp = await axios.post(`${process.env.REACT_APP_BASE_URL}/payments`, {
@@ -132,7 +132,7 @@ const makePayment = async (state) => {
 }
 ```
 4. Submit additional payment detail<a id="submitAdditionalDettails"></a>
-```
+```javascript
 const makePayment = async (state) => {
 
   let resp = await axios.post(`${process.env.REACT_APP_BASE_URL}/payments`, {

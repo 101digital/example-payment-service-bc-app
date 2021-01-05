@@ -11,9 +11,9 @@
    
 2. [Psudo Code ](#code)
 
-   2.1. [Get avaialbe payment methods](#paymentMethod)
+   2.1. [Get avaialbe payment methods](#paymentMethods)
    
-   2.2. [Make payment](#makePaymen)
+   2.2. [Make payment](#makePayment)
    
    2.3. [Sumit additional details](#submitAdditionalDetails)   
    
@@ -21,7 +21,7 @@
 
    3.1. [Simple Card payment](#card)
    
-   3.2. [3D Secure Card payment](#card)
+   3.2. [3D Secure Card payment](#card3d)
       
    3.3. [Poli payment ](#poli)
    
@@ -31,11 +31,11 @@
 
 ## Getting start <a name="getting-start"></a>
 
-1. Clone code 
+1. Clone code <a name="code"></a>
 ```
 git clone git@github.com:101digital/example-payment-service-bc-app.git /tmp/web-client
 ```
-2. Setup local environment
+2. Setup local environment <a name="settup"></a>
 ```
 cd tmp/web-client
 yarn install
@@ -44,7 +44,7 @@ yarn install
 ```
 yarn start
 ```
-4. Open http://localhost:4000 And start testing using Test Credicard from https://docs.adyen.com/development-resources/test-cards/test-card-numbers
+4. Open http://localhost:4000 And start testing using Test Credicard from https://docs.adyen.com/development-resources/test-cards/test-card-numbers <a name="test"></a>
 
 5. Test with [ive demo page](ttps://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiMGVkMDZhZDEtODM4Zi00MmRiLTk0MjMtNTJmNDY5MDI3YzlhIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYwOTczOTk2NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.Ygs6ktTDBa-5jI7kizhffZWRcrn0e2-SHvcXW9OZJDo)
 

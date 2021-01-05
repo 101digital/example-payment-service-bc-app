@@ -172,8 +172,7 @@ ss
 
 2. Card with 3D secure <a id="card3d"></a>
 
-  Init payment `POST /payments`
-   
+  Init payment `POST /payments`   
     Request Body:
     ```
     {}
@@ -183,8 +182,7 @@ ss
     {}
     ```
 
- Complete payment `POST /payments/details`
-   
+ Complete payment `POST /payments/details`   
     Request Body:
     ```
     {}
@@ -195,8 +193,7 @@ ss
     ```
 
 3. Poli <a id="poli"></a>
- Init payment `POST /payments`
-   
+ Init payment `POST /payments`   
     Request Body:
     ```
     {}
@@ -206,8 +203,7 @@ ss
     {}
     ```
 
- Complete payment `POST /payments/details`
-   
+ Complete payment `POST /payments/details`   
     Request Body:
     ```
     {}
@@ -219,8 +215,7 @@ ss
 
 
 4. Paypal <a id="paypal"></a>
- Init payment `POST /payments`
-   
+ Init payment `POST /payments`   
     Request Body:
     ```
     {}
@@ -230,8 +225,7 @@ ss
     {}
     ```
 
- Complete payment `POST /payments/details`
-   
+ Complete payment `POST /payments/details`   
     Request Body:
     ```
     {}

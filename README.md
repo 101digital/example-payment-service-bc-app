@@ -1,21 +1,21 @@
 # Example Payment Service BC Client
-[Live demo page https://sandbox-pay.101digital.io/invoices?sharingKey=...](https://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiZTI4YmM1ZjMtOTc4OC00YTBkLTgzM2YtMTRhZjY3NWExOWJmIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYxMjQyMDY4NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.UAZLF94J86r-6OpFVYkmCjZ1B867YiloP0cBCIxpQGI)  
+[Live demo page https://sandbox-pay.101digital.io/invoices?sharingKey=...](https://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiZTI4YmM1ZjMtOTc4OC00YTBkLTgzM2YtMTRhZjY3NWExOWJmIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYxMjQyMDY4NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.UAZLF94J86r-6OpFVYkmCjZ1B867YiloP0cBCIxpQGI)
 [Swagger documents](https://payment-service-bc.apicafe.io/apis/payments/payment-service-bc). Credentials required to access, Please request if you dont have any.
 # Table of Contents
-1. [Getting Started](#getting-start)  
-   1.1. [Get code](#clone)      
-   1.2. [Setup local environment](#setup)   
+1. [Getting Started](#getting-start)
+   1.1. [Get code](#clone)
+   1.2. [Setup local environment](#setup)
    1.3. [Testing](#test)
-2. [Pseudo Code ](#code)  
-   2.1. [Get avaialbe payment methods](#paymentMethods)  
-   2.2. [Make payment](#makePayment)   
+2. [Pseudo Code ](#code)
+   2.1. [Get avaialbe payment methods](#paymentMethods)
+   2.2. [Make payment](#makePayment)
    2.3. [Submit additional details](#submitAdditionalDetails)
-3. [Examples](#examples)  
-   3.1. [Available payment method response](#paymentMethodsResponse)  
-   3.1. [Simple Card payment](#card)    
-   3.2. [3D Secure Card payment](#card3d)        
-   3.3. [Poli payment ](#poli)     
-   3.4. [Paypal payment](#paypal)   
+3. [Examples](#examples)
+   3.1. [Available payment method response](#paymentMethodsResponse)
+   3.1. [Simple Card payment](#card)
+   3.2. [3D Secure Card payment](#card3d)
+   3.3. [Poli payment ](#poli)
+   3.4. [Paypal payment](#paypal)
 
 
 # Getting start <a id="getting-start"></a>
@@ -37,12 +37,12 @@ yarn start
 
 5. Test with [live demo page](https://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiZTI4YmM1ZjMtOTc4OC00YTBkLTgzM2YtMTRhZjY3NWExOWJmIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYxMjQyMDY4NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.UAZLF94J86r-6OpFVYkmCjZ1B867YiloP0cBCIxpQGI)
 
-# Pseudo Code <a id="code"></a> 
-See also: [`src/index.js`](https://github.com/101digital/example-payment-service-bc-app/blob/master/src/pages/index.js)  
+# Pseudo Code <a id="code"></a>
+See also: [`src/index.js`](https://github.com/101digital/example-payment-service-bc-app/blob/master/src/pages/index.js)
 **baseUrl:** `https://sandbox.101digital.io/payment-service-bc/1.0.0`
 
-1. WebDropIn config  
-https://docs.adyen.com/checkout/drop-in-web?tab=codeBlockxh6WB_7  
+1. WebDropIn config
+https://docs.adyen.com/checkout/drop-in-web?tab=codeBlockxh6WB_7
 ```javascript
 const configuration = {
     paymentMethodsResponse: {}, // The `/paymentMethods` response from the server.
@@ -95,10 +95,10 @@ const configuration = {
       console.error(error)
     }
    };
-```  
-**Notes:**  
-`configuration.paymentMethodsConfiguration` should take from `GET /paymentMethods`  
-```javascript 
+```
+**Notes:**
+`configuration.paymentMethodsConfiguration` should take from `GET /paymentMethods`
+```javascript
     async componentDidMount() {
        let paymentMethodsResponse = await getPaymmentMethod()
        configuration.paymentMethodsResponse = paymentMethodsResponse
@@ -107,15 +107,19 @@ const configuration = {
         const checkout = new AdyenCheckout(configuration)
         const dropin = checkout.create('dropin').mount('#dropin-container')
     }
-```  
-`paymentId` Should store in browser/client for next API call
-```javascript  
- localStorage.setItem('paymentId', response.paymentId)
-```  
+```
 
-2. Get available payment method <a id="paymentMethods"></a>  
-https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/paymentMethods  
-`GET https://sandbox.101digital.io/payment-service-bc/1.0.0/paymentMethods` 
+For PAYPAL `paymentId` Should store in browser/client for next API call
+```javascript
+ localStorage.setItem('paymentId', response.paymentId)
+```
+
+For POLI and CARD_PAYMENT: `paymentId` will append to redirectUrl `http://localhost:4000/checkout.html?paymentId=<paymentId>`
+
+
+2. Get available payment method <a id="paymentMethods"></a>
+https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/paymentMethods
+`GET https://sandbox.101digital.io/payment-service-bc/1.0.0/paymentMethods`
 
 ```javascript
 const getPaymmentMethod = async ()=> {
@@ -124,9 +128,9 @@ const getPaymmentMethod = async ()=> {
 }
 ```
 
-3. Make Payment<a id="makePayment"></a>  
-https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/payments  
-`POST https://sandbox.101digital.io/payment-service-bc/1.0.0/payments` 
+3. Make Payment<a id="makePayment"></a>
+https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/payments
+`POST https://sandbox.101digital.io/payment-service-bc/1.0.0/payments`
 
 ```javascript
 const makePayment = async (state) => {
@@ -143,9 +147,9 @@ const makePayment = async (state) => {
   }
 ```
 
-4. Submit additional payment detail<a id="submitAdditionalDettails"></a>  
-https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/payments/details  
-`POST https://sandbox.101digital.io/payment-service-bc/1.0.0/payments/details` 
+4. Submit additional payment detail<a id="submitAdditionalDettails"></a>
+https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/payments/details
+`POST https://sandbox.101digital.io/payment-service-bc/1.0.0/payments/details`
 
 ```javascript
 const makeDetailsCall = async (data) => {
@@ -155,7 +159,7 @@ const makeDetailsCall = async (data) => {
 ```
 
 # Examples <a id="examples"></a>
-1. Get Payment Method `GET /paymentMethods` <a id ="paymentMethodsResponse"></a>  
+1. Get Payment Method `GET /paymentMethods` <a id ="paymentMethodsResponse"></a>
 **Response**
 ```json
 {
@@ -226,12 +230,12 @@ const makeDetailsCall = async (data) => {
 }
 ```
 
-2. **Simple Card**  <a id="card"></a>  
+2. **Simple Card**  <a id="card"></a>
 ---
 
-   **Init payment `POST /payments`**  
+   **Init payment `POST /payments`**
    **Request Body**:
-   
+
    ```json
 {
   "documentId": "dkjJHFJ87238476FDG",
@@ -267,12 +271,12 @@ const makeDetailsCall = async (data) => {
   "pspReference": "882609828909879A",
   "status": "AcceptedSettlementInProcess"
 }
-``` 
+```
 
-2. **Card with 3D secure** <a id="card3d"></a>  
+2. **Card with 3D secure** <a id="card3d"></a>
 
-  Init payment `POST /payments`       
-      **Request Body**:  
+  Init payment `POST /payments`
+      **Request Body**:
 ```json
 {
         "documentId": "dkjJHFJ87238476FDG",
@@ -301,7 +305,7 @@ const makeDetailsCall = async (data) => {
         "redirectFromIssuerMethod": "GET"
       }
 ```
-     
+
 **Response Body**:
 ```json
 {
@@ -335,7 +339,7 @@ const makeDetailsCall = async (data) => {
     "PaRes": "BQABAgBLxQjK5smxovrr25KkQi5SO5NzB5mHWRqMRamQa3K4l5ZdHHRCE80MYdla8CR66ev3__eOHkr_SEAKOXnuz8xzLvRbFFfDyclnOWtOt3dKNTJf_sBuYp1oA14H0D7ayinMT1Qcxf_YvCtVEAy1anuanD5i_72pwrBKv5R7_DGkrAfT6DaJa4yj5wiBh80NTplvRuwdbDq2JMCK8ukugKUCrhSCIPvzTSmUZWFgWEhL3jFpYr28JMIkf8oeXiL1zBr3eK1MzBZodpbXEVskynnEFn0SsLGqcwANrRUBSCyYAyoCCZgUsFmK0CfjavLamls3XniauI12DO-hIOLxE6GEITLeQzstiQ0H64eRpINVM-Is6DCkzCwfdN1TzRaI6egoGHrFQ2bZtSPqIUWtfXkS-vj6IeaeL5ng17x15N1EWHiRszOlGyfH_P76vXuR8DT3IFoQHRd8I8nsrQIPJRcAu9nEgFLfYMGWogFaonFWi9X4nFE5D_9Gq14-ptdUMTaNTDH1xgsHqE4ZdGGo0zVj7H3i5vlv8defnK9fDuiQDPFyxMYPE6lgH3WQvuNhdOLYB8ubM2HNbCxUraAJKjoX7wY2P-kHFC1BgdEOVON4agTaM1RrEH2fhIKncVCoO4lDViVR3tFd7hHN1MIX4V2amSJGyzs8WtfDnlWIyVNO5hCl1K7E_x3iYrx__RNwNby-AEp7ImtleSI6IkFGMEFBQTEwM0NBNTM3RUFFRDg3QzI0REQ1MzkwOUI4MEE3OEE5MjNFMzgyM0Q2OERBQ0M5NEI5RkY4MzA1REMifSeF1AkLO5v9g61aQNOPs6pkLqnGrTWxwhS1V9nOm-a0Ld1gPB11Q6ERQRlF0ezyz8B9ryEhlqG81uSMkY11lGPTDHuNneU0DIyNGDODmXmW2jI1O-sgkzUaw-ULOvtDPtWtGcL7vZGrZGa1sm_GGbhNLjIuBQABAQAzd7EI5EuTjiCEOUI9J-RdsnAjB-3ricP4L_6_BxKt9oxTVbF5tEcLdMPG_7EmcbPzIIobHvGirfjZYDzORtNMMRVF9AU2gobMV7cJAL94YZfbuDZ_fcDWEmPmlAJ8hrMe1X8Ptx6awsP_rLiaJyra7ESWC562PZLebUSU1F5H2D7T-ZIWTU8yolIyZGBU6xZ4Tz5IIDKsKLT6HrDTujR6Vc8C7NqcPzqca9LGdEOCeBVz8bcmJ1FG4pjTJvlMBPMQmYfou02G4D8iKhenA4sdwVAszLDd__oIm3RPXWwUjgjC17ZAQ4iWpo_qJvOJq8kNAXy-AjiTe_TtkUY4kHvuEBf9vfi4TvntlktmgWduev4AAAbo2nUmQlx6R1W0ni47OpEODy0VmnuLPIWPO24_jN2GHJ3HTVMgfcRv0F-tWPu-UanZ0bNF6yDiHhzCIcCR8gZrmQ81NztH4a6WhZGDzBk__IyiaTpkmJuzniC_6gFGJNFs75FB9kSTGuxSX_z7azwrtmOzf-XhqJ0E-pVigzKx_u4ZZM8pgVUP43whr02Tmre-ax4QW25QbmtTvXgP2IpWEunBTRciLYN6qEuFhE5hpEX8mBuU998z19e8bA43JmNat-sJrepHW2wHYjgnDsYf36Z4W8HMGYaAkoNr6JOpEf0IqQ3jUdVR0n46f7SAfgsMk7wChScUwrVDLb8SJy4dKV2fcE4_mO1NeUB_knRE5stnA8QXYnDRVZd_2xE1cdawqyXMnktktuzoDwh_YgsDv6lnsC5L1HkZgC-rb1M0U6FTWAT-lcGqMnWvMuD55h-SpPXYsSGmvmFziaMr7m6O61XK4VyTaSZ9hxELK2R8Va4zN2ck0eE7LXMfoE37Hvqwz4tkET62fYsyBXfqGOY_UShdmaXT1WrAlP82Vm4dVF-WzewwTr_kFOQy5-qpnh7Ltq0cVzGBs89rKI-mlt-AkCVfecYk4sU-mkdpg9AaEQD5h1--8Etpd8AcxGzybNeUXzB-8yz3XKv4AivzhD5DYWP6jsndKOds6Yn_egN9TT1StXUmlRt1d11_Cab0mQT019iU0Em2FP8RVJXDG_5Y84w-ho_0Gw93FoZf76VEHpgAFc1teQLZ2AsBB4xymXwwjqpFV-1eClxH4l2ctBluikU38_QtixZh1R95jtlylX5xx-uB6aM7zj2tucjnaU8du4rwkyUR0BEhgDpjEDTAR5PJZbwLQKNnM6_vZqWNZzzhMyVBYLR727Qpav_FkcVk2tGU48_0HSiRS8X_tY5lsOLe9_2fsYDXWLI8MHF9TOduZQX4rX5E7coTcMimRSRkuRF2WjP-6mSKYZnpU6TJVq8EtiiCYIi-CifjJYwmFIgpJxiAHT0BAOJzFRVcKd-MQYKkag3FtLVtG-B4fBUTjYaJ0DfScnOvq38Gg9IxLv0OJ63L1e0P29gUY_SItJBsOG7PA3SrTmLiDLgFCultQioxir__zwCdTkuXbwHc880I1sBx0LWwvDZqihZeOomogGeCSI8VDw0n6RNzk1SFLcna0XrLyaotl9pCm-7CuwA71Ba2xRy_iDDEZDepXQzmoqcRq-PhksUADsrtv6t4e-_hzSd6bwKLZA3bbeacmDrGeQpTaWHCuP8os1gfC-JO8Kh3RbAE4abtWhgkUQq4oldGp_5M8pfkBDbjbskfYyRSH6NnZnFiD43mLQG2X28hAsbiek44aRGpw6hAoMssDSmzRdZVdU3Df0-TvOx6Vn4nUL2O0Zn1xrU0RjH6GTaVLFUQEfkSJsden3KoHShq20QrEfzQAnGpEcTB1ZM5NEYVc9OzcyhvZlEQKLV0kt_MiqJO_LLQ0twowcPsrnaqxTSLwxvNHAKpBZVmuLXulR0biyQcnq58fABaaP3AStCaNdRFcmDybwojBWdPEePOWFYIFExwMbCLsIRP5ZEHHKKPX_VZiM70bKh9sp8xnxSJkBof9R3_yU4_jzfy9Er5YGc3FyNa6KaeNCgSxqou8HTS8_0vi66qppxxO4UOoQhQQDusGpBX9iRHMu5YCB4nj6VqGdszXOzANnX6UUXnfIkywi2vQJJndG_GnEurOiHEK-MOTEO64ucmW5Pu9ELrzLgm3nKxLzT2uiN3EgESjTjKL1O4nCKOLa6QVH5hA7xlggOWfGP5W3MpwiUeBl1YSpYvuwoMEgqI3v0CNqhFUWrZ9nmPUQ99ZWWtxTbMQW7kAy_e1bZyrM0LUhxYGw"
   }
 }
-``` 
+```
 
 **Response Body**:
 ```json
@@ -346,10 +350,10 @@ const makeDetailsCall = async (data) => {
     "PaRes": "BQABAgBLxQjK5smxovrr25KkQi5SO5NzB5mHWRqMRamQa3K4l5ZdHHRCE80MYdla8CR66ev3__eOHkr_SEAKOXnuz8xzLvRbFFfDyclnOWtOt3dKNTJf_sBuYp1oA14H0D7ayinMT1Qcxf_YvCtVEAy1anuanD5i_72pwrBKv5R7_DGkrAfT6DaJa4yj5wiBh80NTplvRuwdbDq2JMCK8ukugKUCrhSCIPvzTSmUZWFgWEhL3jFpYr28JMIkf8oeXiL1zBr3eK1MzBZodpbXEVskynnEFn0SsLGqcwANrRUBSCyYAyoCCZgUsFmK0CfjavLamls3XniauI12DO-hIOLxE6GEITLeQzstiQ0H64eRpINVM-Is6DCkzCwfdN1TzRaI6egoGHrFQ2bZtSPqIUWtfXkS-vj6IeaeL5ng17x15N1EWHiRszOlGyfH_P76vXuR8DT3IFoQHRd8I8nsrQIPJRcAu9nEgFLfYMGWogFaonFWi9X4nFE5D_9Gq14-ptdUMTaNTDH1xgsHqE4ZdGGo0zVj7H3i5vlv8defnK9fDuiQDPFyxMYPE6lgH3WQvuNhdOLYB8ubM2HNbCxUraAJKjoX7wY2P-kHFC1BgdEOVON4agTaM1RrEH2fhIKncVCoO4lDViVR3tFd7hHN1MIX4V2amSJGyzs8WtfDnlWIyVNO5hCl1K7E_x3iYrx__RNwNby-AEp7ImtleSI6IkFGMEFBQTEwM0NBNTM3RUFFRDg3QzI0REQ1MzkwOUI4MEE3OEE5MjNFMzgyM0Q2OERBQ0M5NEI5RkY4MzA1REMifSeF1AkLO5v9g61aQNOPs6pkLqnGrTWxwhS1V9nOm-a0Ld1gPB11Q6ERQRlF0ezyz8B9ryEhlqG81uSMkY11lGPTDHuNneU0DIyNGDODmXmW2jI1O-sgkzUaw-ULOvtDPtWtGcL7vZGrZGa1sm_GGbhNLjIuBQABAQAzd7EI5EuTjiCEOUI9J-RdsnAjB-3ricP4L_6_BxKt9oxTVbF5tEcLdMPG_7EmcbPzIIobHvGirfjZYDzORtNMMRVF9AU2gobMV7cJAL94YZfbuDZ_fcDWEmPmlAJ8hrMe1X8Ptx6awsP_rLiaJyra7ESWC562PZLebUSU1F5H2D7T-ZIWTU8yolIyZGBU6xZ4Tz5IIDKsKLT6HrDTujR6Vc8C7NqcPzqca9LGdEOCeBVz8bcmJ1FG4pjTJvlMBPMQmYfou02G4D8iKhenA4sdwVAszLDd__oIm3RPXWwUjgjC17ZAQ4iWpo_qJvOJq8kNAXy-AjiTe_TtkUY4kHvuEBf9vfi4TvntlktmgWduev4AAAbo2nUmQlx6R1W0ni47OpEODy0VmnuLPIWPO24_jN2GHJ3HTVMgfcRv0F-tWPu-UanZ0bNF6yDiHhzCIcCR8gZrmQ81NztH4a6WhZGDzBk__IyiaTpkmJuzniC_6gFGJNFs75FB9kSTGuxSX_z7azwrtmOzf-XhqJ0E-pVigzKx_u4ZZM8pgVUP43whr02Tmre-ax4QW25QbmtTvXgP2IpWEunBTRciLYN6qEuFhE5hpEX8mBuU998z19e8bA43JmNat-sJrepHW2wHYjgnDsYf36Z4W8HMGYaAkoNr6JOpEf0IqQ3jUdVR0n46f7SAfgsMk7wChScUwrVDLb8SJy4dKV2fcE4_mO1NeUB_knRE5stnA8QXYnDRVZd_2xE1cdawqyXMnktktuzoDwh_YgsDv6lnsC5L1HkZgC-rb1M0U6FTWAT-lcGqMnWvMuD55h-SpPXYsSGmvmFziaMr7m6O61XK4VyTaSZ9hxELK2R8Va4zN2ck0eE7LXMfoE37Hvqwz4tkET62fYsyBXfqGOY_UShdmaXT1WrAlP82Vm4dVF-WzewwTr_kFOQy5-qpnh7Ltq0cVzGBs89rKI-mlt-AkCVfecYk4sU-mkdpg9AaEQD5h1--8Etpd8AcxGzybNeUXzB-8yz3XKv4AivzhD5DYWP6jsndKOds6Yn_egN9TT1StXUmlRt1d11_Cab0mQT019iU0Em2FP8RVJXDG_5Y84w-ho_0Gw93FoZf76VEHpgAFc1teQLZ2AsBB4xymXwwjqpFV-1eClxH4l2ctBluikU38_QtixZh1R95jtlylX5xx-uB6aM7zj2tucjnaU8du4rwkyUR0BEhgDpjEDTAR5PJZbwLQKNnM6_vZqWNZzzhMyVBYLR727Qpav_FkcVk2tGU48_0HSiRS8X_tY5lsOLe9_2fsYDXWLI8MHF9TOduZQX4rX5E7coTcMimRSRkuRF2WjP-6mSKYZnpU6TJVq8EtiiCYIi-CifjJYwmFIgpJxiAHT0BAOJzFRVcKd-MQYKkag3FtLVtG-B4fBUTjYaJ0DfScnOvq38Gg9IxLv0OJ63L1e0P29gUY_SItJBsOG7PA3SrTmLiDLgFCultQioxir__zwCdTkuXbwHc880I1sBx0LWwvDZqihZeOomogGeCSI8VDw0n6RNzk1SFLcna0XrLyaotl9pCm-7CuwA71Ba2xRy_iDDEZDepXQzmoqcRq-PhksUADsrtv6t4e-_hzSd6bwKLZA3bbeacmDrGeQpTaWHCuP8os1gfC-JO8Kh3RbAE4abtWhgkUQq4oldGp_5M8pfkBDbjbskfYyRSH6NnZnFiD43mLQG2X28hAsbiek44aRGpw6hAoMssDSmzRdZVdU3Df0-TvOx6Vn4nUL2O0Zn1xrU0RjH6GTaVLFUQEfkSJsden3KoHShq20QrEfzQAnGpEcTB1ZM5NEYVc9OzcyhvZlEQKLV0kt_MiqJO_LLQ0twowcPsrnaqxTSLwxvNHAKpBZVmuLXulR0biyQcnq58fABaaP3AStCaNdRFcmDybwojBWdPEePOWFYIFExwMbCLsIRP5ZEHHKKPX_VZiM70bKh9sp8xnxSJkBof9R3_yU4_jzfy9Er5YGc3FyNa6KaeNCgSxqou8HTS8_0vi66qppxxO4UOoQhQQDusGpBX9iRHMu5YCB4nj6VqGdszXOzANnX6UUXnfIkywi2vQJJndG_GnEurOiHEK-MOTEO64ucmW5Pu9ELrzLgm3nKxLzT2uiN3EgESjTjKL1O4nCKOLa6QVH5hA7xlggOWfGP5W3MpwiUeBl1YSpYvuwoMEgqI3v0CNqhFUWrZ9nmPUQ99ZWWtxTbMQW7kAy_e1bZyrM0LUhxYGw"
   }
 }
-```  
+```
 
-3. **POLI** <a id="poli"></a>  
- **Init payment `POST /payments`**  
+3. **POLI** <a id="poli"></a>
+ **Init payment `POST /payments`**
     **Request Body**:
     ```json
    {"documentId":"dkjJHFJ87238476FDG","documentType":"INVOICE","paymentMethod":{"type":"poli"},"origin":"http://localhost:4000","returnUrl":"http://localhost:4000/checkout.html","redirectFromIssuerMethod":"GET"}
@@ -360,7 +364,7 @@ const makeDetailsCall = async (data) => {
     ```
 
  **Complete payment `POST /payments/details`**
- 
+
    **Request Body**:
 ```json
 {
@@ -370,7 +374,7 @@ const makeDetailsCall = async (data) => {
     "type": "complete"
   }
 }
-```         
+```
 **Response Body**:
 ```json
 {
@@ -378,11 +382,11 @@ const makeDetailsCall = async (data) => {
   "pspReference": "851609831914407C",
   "status": "AcceptedSettlementInProcess"
 }
-```    
+```
 
 
-4. **PAYPAL** <a id="paypal"></a>  
- **Init payment `POST /payments`**  
+4. **PAYPAL** <a id="paypal"></a>
+ **Init payment `POST /payments`**
     **Request Body**:
     ```json
     {
@@ -414,8 +418,8 @@ const makeDetailsCall = async (data) => {
      }
    }
     ```
-     
- **Complete payment `POST /payments/details`**  
+
+ **Complete payment `POST /payments/details`**
     **Request Body**:
 ```json
 {

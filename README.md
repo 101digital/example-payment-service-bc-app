@@ -95,7 +95,24 @@ const configuration = {
       console.error(error)
     }
    };
-```
+```  
+**Notes:**  
+`configuration.paymentMethodsConfiguration` should take from `GET /paymentMethods`  
+```javascript 
+    async componentDidMount() {
+       let paymentMethodsResponse = await getPaymmentMethod()
+       configuration.paymentMethodsResponse = paymentMethodsResponse
+       configuration.paymentMethodsConfiguration = paymentMethodsResponse.paymentMethodsConfiguration
+
+        const checkout = new AdyenCheckout(configuration)
+        const dropin = checkout.create('dropin').mount('#dropin-container')
+    }
+```  
+`paymentId` Should store in browser/client for next API call
+```javascript  
+ localStorage.setItem('paymentId', response.paymentId)
+```  
+
 2. Get available payment method <a id="paymentMethods"></a>  
 https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/paymentMethods  
 `GET https://sandbox.101digital.io/payment-service-bc/1.0.0/paymentMethods` 

@@ -9,7 +9,7 @@
 2. [Pseudo Code ](#code)  
    2.1. [Get avaialbe payment methods](#paymentMethods)  
    2.2. [Make payment](#makePayment)   
-   2.3. [Sumit additional details](#submitAdditionalDetails)
+   2.3. [Submit additional details](#submitAdditionalDetails)
 3. [Examples](#examples)  
    3.1. [Available payment method response](#paymentMethodsResponse)  
    3.1. [Simple Card payment](#card)    

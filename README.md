@@ -2,7 +2,7 @@
 [Live demo page https://sandbox-pay.101digital.io/invoices?sharingKey=...](https://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiZTI4YmM1ZjMtOTc4OC00YTBkLTgzM2YtMTRhZjY3NWExOWJmIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYxMjQyMDY4NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.UAZLF94J86r-6OpFVYkmCjZ1B867YiloP0cBCIxpQGI)  
 [Swagger documents](https://101digital.apicafe.io/apis/platform-services/payment-service-bc)
 # Table of Contents
-1. [Getting start](#getting-start)  
+1. [Getting Started](#getting-start)  
    1.1. [Get code](#clone)      
    1.2. [Setup local environment](#setup)   
    1.3. [Testing](#test)
@@ -39,8 +39,10 @@ yarn start
 
 # Psudo Code <a id="code"></a> 
 See also: [`src/index.js`](https://github.com/101digital/example-payment-service-bc-app/blob/master/src/pages/index.js)
+** 101d sandbox endpoint ***
 
-1. WebDropIn config
+1. WebDropIn config  
+https://docs.adyen.com/checkout/drop-in-web?tab=codeBlockxh6WB_7  
 ```javascript
 const configuration = {
     paymentMethodsResponse: {}, // The `/paymentMethods` response from the server.
@@ -94,7 +96,10 @@ const configuration = {
     }
    };
 ```
-2. Get available payment method <a id="paymentMethods"></a>
+2. Get available payment method <a id="paymentMethods"></a>  
+https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/paymentMethods  
+`GET https://sandbox.101digital.io/payment-service-bc/1.0.0/paymentMethods` 
+
 ```javascript
 const getPaymmentMethod = async ()=> {
   let resp = await axios.get(`${process.env.REACT_APP_BASE_URL}/paymentMethods?documentId=${process.env.REACT_APP_DOCUMENT_ID}&documentType=${process.env.REACT_APP_DOCUMENT_TYPE}`)
@@ -102,7 +107,10 @@ const getPaymmentMethod = async ()=> {
 }
 ```
 
-3. Make Payment<a id="makePayment"></a>
+3. Make Payment<a id="makePayment"></a>  
+https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/payments  
+`POST https://sandbox.101digital.io/payment-service-bc/1.0.0/payments` 
+
 ```javascript
 const makePayment = async (state) => {
 
@@ -118,7 +126,10 @@ const makePayment = async (state) => {
   }
 ```
 
-4. Submit additional payment detail<a id="submitAdditionalDettails"></a>
+4. Submit additional payment detail<a id="submitAdditionalDettails"></a>  
+https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/payments/details  
+`POST https://sandbox.101digital.io/payment-service-bc/1.0.0/payments/details` 
+
 ```javascript
 const makeDetailsCall = async (data) => {
   let resp = await axios.post(`${process.env.REACT_APP_BASE_URL}/payments/details`, data)

@@ -38,8 +38,8 @@ yarn start
 5. Test with [live demo page](https://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiZTI4YmM1ZjMtOTc4OC00YTBkLTgzM2YtMTRhZjY3NWExOWJmIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYxMjQyMDY4NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.UAZLF94J86r-6OpFVYkmCjZ1B867YiloP0cBCIxpQGI)
 
 # Pseudo Code <a id="code"></a> 
-See also: [`src/index.js`](https://github.com/101digital/example-payment-service-bc-app/blob/master/src/pages/index.js)
-** 101d sandbox endpoint ***
+See also: [`src/index.js`](https://github.com/101digital/example-payment-service-bc-app/blob/master/src/pages/index.js)  
+**baseUrl:** `https://sandbox.101digital.io/payment-service-bc/1.0.0`
 
 1. WebDropIn config  
 https://docs.adyen.com/checkout/drop-in-web?tab=codeBlockxh6WB_7  

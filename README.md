@@ -97,7 +97,7 @@ const configuration = {
    };
 ```
 **Notes:**
-`configuration.paymentMethodsConfiguration` should take from `GET /paymentMethods`
+`configuration.paymentMethodsConfiguration` should be taken from `GET /paymentMethods`
 ```javascript
     async componentDidMount() {
        let paymentMethodsResponse = await getPaymmentMethod()
@@ -109,13 +109,12 @@ const configuration = {
     }
 ```
 
-For PAYPAL `paymentId` Should store in browser/client for next API call
+For PAYPAL, `paymentId` Should be stored in browser/client for next API(`/payments/details`) call
 ```javascript
  localStorage.setItem('paymentId', response.paymentId)
 ```
 
-For POLI and CARD_PAYMENT: `paymentId` will append to redirectUrl `http://localhost:4000/checkout.html?paymentId=<paymentId>`
-
+For POLI and CARD_PAYMENT: `paymentId` will append to redirectUrl `http://localhost:4000/checkout.html?paymentId=<paymentId>`. Client can obtain the `paymentId` from this query paramter to call next API(`/payments/details`) 
 
 2. Get available payment method <a id="paymentMethods"></a>
 https://docs.adyen.com/api-explorer/#/CheckoutService/v66/post/paymentMethods

@@ -1,22 +1,23 @@
 # Example Payment Service BC Client
 [Live demo page https://sandbox-pay.101digital.io/invoices?sharingKey=...](https://sandbox-pay.101digital.io/invoices?sharingKey=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiZTI4YmM1ZjMtOTc4OC00YTBkLTgzM2YtMTRhZjY3NWExOWJmIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYxMjQyMDY4NCwidXNlcklkIjoiIiwib3JnSWQiOiIifQ.UAZLF94J86r-6OpFVYkmCjZ1B867YiloP0cBCIxpQGI)
 
-[Swagger documents](https://payment-service-bc.apicafe.io/apis/payments/payment-service-bc). Credentials required to access, Please request if you dont have any.
+[Swagger documents](https://payment-service-bc.apicafe.io/apis/payments/payment-service-bc)  
+ *Credentials required to access, Please request if you dont have any.*
 # Table of Contents
-1. [Getting Started](#getting-start)
-   1.1. [Get code](#clone)
-   1.2. [Setup local environment](#setup)
-   1.3. [Testing](#test)
-2. [Pseudo Code ](#code)
-   2.1. [Get avaialbe payment methods](#paymentMethods)
-   2.2. [Make payment](#makePayment)
-   2.3. [Submit additional details](#submitAdditionalDetails)
-3. [Examples](#examples)
-   3.1. [Available payment method response](#paymentMethodsResponse)
-   3.1. [Simple Card payment](#card)
-   3.2. [3D Secure Card payment](#card3d)
-   3.3. [Poli payment ](#poli)
-   3.4. [Paypal payment](#paypal)
+1. [Getting Started](#getting-start)  
+   1.1. [Get code](#clone)  
+   1.2. [Setup local environment](#setup)  
+   1.3. [Testing](#test)  
+2. [Pseudo Code ](#code)  
+   2.1. [Get avaialbe payment methods](#paymentMethods)  
+   2.2. [Make payment](#makePayment)  
+   2.3. [Submit additional details](#submitAdditionalDetails)  
+3. [Examples](#examples)  
+   3.1. [Available payment method response](#paymentMethodsResponse)  
+   3.1. [Simple Card payment](#card)  
+   3.2. [3D Secure Card payment](#card3d)  
+   3.3. [Poli payment ](#poli)  
+   3.4. [Paypal payment](#paypal)  
 
 
 # Getting start <a id="getting-start"></a>

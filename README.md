@@ -345,7 +345,7 @@ const makeDetailsCall = async (data) => {
 **Response Body**:
 ```json
 {
-  "paymentId": "ee057d2a-a93e-4a97-a2c5-0fcee6e18722",
+  "paymentId": "d2322d8c-2a29-41f2-bc4c-26e9cb4bd03e",
   "pspReference": "851609831914407C",
   "status": "Accepted"
 }

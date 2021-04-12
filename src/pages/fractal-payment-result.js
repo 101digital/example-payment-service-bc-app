@@ -58,10 +58,10 @@ const completePayment = async (params) => {
   let paymentId  = params['paymentId']? params['paymentId'] : defaultPaymentId
 
   let accessToken = await obtainToken()
-
+  let baseUrl = 'https://sandbox.101digital.io/payment-service/1.0.5/payments'
   try {
    let resp =
-    await axios.patch(`https://sandbox.101digital.io/payment-service/1.0.5/payments/${paymentId}`, data,
+    await axios.patch(`${baseUrl}/${paymentId}`, data,
         {
           headers:{
            "Content-Type": "application/json",

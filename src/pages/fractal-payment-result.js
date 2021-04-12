@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 
-const  paymentId ='5a1d8fa0-1cf0-46fc-ac00-a3b78837162b'
+const  defaultPaymentId ='5a1d8fa0-1cf0-46fc-ac00-a3b78837162b'
 
 const  obtainToken = async () => {
   let bodyFormData = new URLSearchParams()
@@ -55,7 +55,7 @@ const completePayment = async (params) => {
     }
 }
 
-
+  let paymentId  = params['paymentId']? params['paymentId'] : defaultPaymentId
 
   let accessToken = await obtainToken()
 

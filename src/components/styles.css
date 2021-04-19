@@ -1,0 +1,25 @@
+.OBWebCheckout ul {
+    list-style-type:none;
+    padding-left:0;
+}
+
+.OBWebCheckout ul li{
+    cursor: pointer;
+    padding:10px;
+    border: solid 1px #ccc;
+    border-bottom: none;
+}
+
+.OBWebCheckout ul li:last-child {
+    border-bottom: solid 1px #ccc;
+}
+
+.OBWebCheckout ul li:hover{
+    border: solid 1px orange;
+    border-bottom: none;
+}
+
+.searchBar input[type='text'] {
+    width: 98%;
+    line-height: 32px;
+}

@@ -19,7 +19,9 @@
     "react": "16",
     "react-cookies": "^0.1.1",
     "react-dom": "16",
+    "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
+    "webcheckout-ob": "https://github.com/101digital/webcheckout-ob",
     "webpack": "4.40.2",
     "webpack-dev-server": "^3.11.0"
   },

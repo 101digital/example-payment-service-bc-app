@@ -42,20 +42,31 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
 });
 
 const proxy = (env) => {
+  let proxyConfigData =
+  {
+    target: envConfig['REACT_APP_REMOTE_HOST'],
+    secure: false,
+    changeOrigin: true
+  }
+
+  let proxyPath = envConfig['REACT_APP_REMOTE_CONEXT']? envConfig['REACT_APP_REMOTE_CONEXT'] : '/api'
+  let proxyConfig = {}
+  proxyConfig[proxyPath] = proxyConfigData
+
+  if (proxyPath == '/api') {
+    proxyConfig[proxyPath].pathRewrite= {
+      "^/api": ""
+    }
+  }
+
   switch(env) {
       default:
-        return  {
-          '/payment-service-bc/1.0.0':
-           {
-               target: envConfig['REACT_APP_REMOTE_HOST'],
-               secure: false,
-               changeOrigin: true
-           }
-         }
+        return  proxyConfig
   }
 }
 
 module.exports = (env) => {return {
+  mode: 'development',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
@@ -74,7 +85,8 @@ module.exports = (env) => {return {
     rules: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
-      {test: /\.css$/,  use: [ 'style-loader', 'css-loader' ]}
+      {test: /\.css$/,  use: [ 'style-loader', 'css-loader']},
+      {test:/\.s[ac]ss$/i,  use: [ 'style-loader', 'css-loader', "sass-loader" ]}
      ]
   },
 

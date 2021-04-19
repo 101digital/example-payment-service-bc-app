@@ -5002,7 +5002,7 @@ wbuf@^1.7.3:
 
 "webcheckout-ob@https://github.com/101digital/webcheckout-ob":
   version "1.0.0"
-  resolved "https://github.com/101digital/webcheckout-ob#ec82215f4930969cc95257e91fe5e4c7c51df7e8"
+  resolved "https://github.com/101digital/webcheckout-ob#604751a5c3fb3b125e0a1713c8f9e7ca338df66a"
 
 webpack-cli@^4.2.0:
   version "4.2.0"

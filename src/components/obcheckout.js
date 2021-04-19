@@ -64,12 +64,23 @@
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
 
+        this.handleAction = this.handleAction.bind(this)
+        this.setStatus = this.setStatus.bind(this)
+
     }
 
     handleFilterTextChange(filterText) {
       this.setState({
         filterText: filterText
       });
+    }
+
+    handleAction(action) {
+       window.location = action.url
+    }
+
+    setStatus(status, details) {
+
     }
 
     handleSubmit(paymentMethod) {

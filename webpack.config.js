@@ -4,12 +4,6 @@ const webpack = require('webpack');
 
 const path = require('path');
 const fs = require('fs');
-const dotenv = require('dotenv').config({path: __dirname + '/.env'});
-const envConfig =  dotenv.parsed
-
-for (const k in envConfig) {
-  process.env[k] = JSON.stringify(envConfig[k])
-}
 
 
 const fileList =(dir) =>{
@@ -42,6 +36,14 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
 });
 
 const proxy = (env) => {
+  let suffix = env? `.${env}` :''
+  const dotenv = require('dotenv').config({path: __dirname + `/.env${suffix}`});
+  const envConfig =  dotenv.parsed
+
+  for (const k in envConfig) {
+    process.env[k] = JSON.stringify(envConfig[k])
+  }
+
   let proxyConfigData =
   {
     target: envConfig['REACT_APP_REMOTE_HOST'],

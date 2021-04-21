@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --mode development --env development",
+    "start": "webpack serve --mode development --env development ",
+    "start:local": "webpack serve --mode development --env ENV=local",
     "start:sandbox": "webpack serve --mode development --env ENV=sandbox",
     "start:bc": "webpack serve --mode development --env ENV=bc"
   },

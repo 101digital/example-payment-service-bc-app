@@ -3,8 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title>101D Payment App</title>
+    <script type="text/javascript">
+    window.paymentComplete = function(result) {
+      console.log(result)
+      alert(result.success)
+    }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="webdropIn"
+    invoice-share-key= 'eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZUlkIjoiMDU0OGQwMWEtZWEyZS00YzFkLTlkNDItOWEzOTk5OTkzZGFjIiwiaXNzIjoiMTAxRCIsImV4cCI6MTYyODEzNTE4OX0.xo3FIfLGvUl1A0VLt2zh_HaoraXwmuEWzfrwuVW06sE'
+    payment-base-url = 'https://sandbox.101digital.io/web-payment-service/1.0.0'
+    api-key = 'test_DWLVOLS6WFD2LPYG4RFAGVM5OIHTWPNH'
+    environment = 'test'
+    on-payment-complete = 'paymentComplete'
+    >
+  </div>
   </body>
 </html>

@@ -3,14 +3,16 @@ import './Product.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import Logo from '../../../../assets/images/logo.svg';
 import productService from '../../services/product-service';
 const ProductComponent = () => {
   const [productList, setProductList] = useState(undefined);
   useEffect(() => {
     if (!productList) {
-      const data = getProduct();
-      setProductList(data);
+      getProduct().then((result) => {
+        setProductList(result);
+      });
     }
   }, [productList]);
 
@@ -22,13 +24,16 @@ const ProductComponent = () => {
   const renderProduct = () => {
     let html;
     if (productList) {
-      console.log(productList.data);
-      html = productList.data.map((product) => {
+      html = productList.data.map((product, key) => {
         return (
-          <div className="products-list">
+          <div className="products-list" key={`product-${key}`}>
             <div className="heading">
               <div className="product-name">{product.Name}</div>
-              <div className="product-function"></div>
+              <div className="product-function">
+                <span className="price">No price available</span>
+                <Button variant="success">Add to cart</Button>
+                <Button variant="dark">Detail</Button>
+              </div>
             </div>
             <div className="product-number">
               <label>Product number: </label>

@@ -100,3 +100,11 @@ label {
 .col {
   padding-left: 0;
 }
+.heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+button.btn.btn-success {
+  margin: 0 10px;
+}

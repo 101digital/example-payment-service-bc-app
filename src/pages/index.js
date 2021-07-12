@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Router, Redirect } from '@reach/router';
 import AuthComponent from './js/components/Auth/Auth';
@@ -9,9 +9,10 @@ import ProductComponent from './js/components/Product/Product';
 const App = () => {
   return (
     <Router>
-      <AuthComponent path="auth/login" />
       <ProductComponent path="products" />
-      <Redirect noThrow from="*" to="auth/login" />
+
+      <AuthComponent path="login" />
+      <Redirect noThrow from="*" to="login" />
     </Router>
   );
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+
 import { Router, Redirect } from '@reach/router';
 import AuthComponent from './js/components/Auth/Auth';
 import ProductComponent from './js/components/Product/Product';

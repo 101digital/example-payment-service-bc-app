@@ -52,7 +52,6 @@ module.exports = (env) => {
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
       compress: true,
-      https: true,
       port: 4000,
       proxy: proxy(env.ENV),
       historyApiFallback: true,

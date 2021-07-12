@@ -18,6 +18,8 @@ const getDefault = (prop) => {
 
         case 'INSTANCE_URL':
             return localStorage.getItem('instanceUrl') || 'https://101digitalpte--developerp.my.salesforce.com'
+        case 'HOME_PAGE':
+            return '/products'
         default:
             throw new Error (`Missing property ${prop}`)
     }

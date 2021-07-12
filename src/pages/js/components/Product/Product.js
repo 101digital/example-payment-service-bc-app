@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './Product.css';
-import 'antd/dist/antd.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

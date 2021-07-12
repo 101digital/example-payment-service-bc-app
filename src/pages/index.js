@@ -11,8 +11,8 @@ const App = () => {
     <Router>
       <ProductComponent path="products" />
 
-      <AuthComponent path="login" />
-      <Redirect noThrow from="*" to="login" />
+      <AuthComponent path="auth/login" />
+      <Redirect noThrow from="*" to="auth/login" />
     </Router>
   );
 };

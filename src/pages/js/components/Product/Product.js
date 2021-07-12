@@ -30,8 +30,10 @@ const ProductComponent = () => {
               <div className="product-name">{product.Name}</div>
               <div className="product-function">
                 <span className="price">No price available</span>
-                <Button variant="success">Add to cart</Button>
-                <Button variant="dark">Detail</Button>
+                <div class="my-button success">Add to cart</div>
+                <div class="my-button dark">Detail</div>
+                {/* <Button variant="success">Add to cart</Button> */}
+                {/* <Button variant="dark">Detail</Button> */}
               </div>
             </div>
             <div className="product-number">

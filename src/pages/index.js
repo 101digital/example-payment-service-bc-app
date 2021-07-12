@@ -1,22 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Redirect } from '@reach/router';
+import AuthComponent from './js/components/Auth/Auth';
+import ProductComponent from './js/components/Product/Product';
 
- class App extends React.Component {
+const App = () => {
+  return (
+    <Router>
+      <AuthComponent path="auth/login" />
+      <ProductComponent path="products" />
+      <Redirect noThrow from="*" to="auth/login" />
+    </Router>
+  );
+};
 
-  constructor(props){
-
-  }
-
-
-  async componentDidMount() {
-  }
-
-  render() {
-      return <div id="AAAA"></div>
-    }
-}
-
-
-
-
-ReactDOM.render(<App  />)
+ReactDOM.render(<App />, document.getElementById('root'));

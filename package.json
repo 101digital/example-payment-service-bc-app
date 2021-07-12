@@ -7,10 +7,12 @@
     "start": "webpack serve --mode development --env development",
     "start:sandbox": "webpack serve --mode development --env ENV=sandbox",
     "start:bc": "webpack serve --mode development --env ENV=bc",
-    "build" : "webpack --env ENV=prod"
+    "build": "webpack --env ENV=prod"
   },
   "dependencies": {
     "@adyen/adyen-web": "^3.19.0",
+    "@reach/router": "^1.3.4",
+    "antd": "^4.16.7",
     "axios": "^0.21.0",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",

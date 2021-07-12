@@ -20,6 +20,8 @@ const getDefault = (prop) => {
             return localStorage.getItem('instanceUrl') || 'https://101digitalpte--developerp.my.salesforce.com'
         case 'HOME_PAGE':
             return '/products'
+        case 'OAUTH_CAlLBACK':
+            return 'http://localhost:4000/auth/login'
         default:
             throw new Error (`Missing property ${prop}`)
     }

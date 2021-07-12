@@ -2,6 +2,7 @@ import React from 'react';
 import * as QueryString from "query-string"
 import axios from 'axios'
 import env from '../../env'
+import { navigate } from '@reach/router';
 
 
 const obtainToken = (code)=> {
@@ -22,7 +23,8 @@ const obtainToken = (code)=> {
             localStorage.setItem('access_token', resp.data.access_token)
             localStorage.setItem('access_token', resp.data.access_token);
             localStorage.setItem('instanceUrl', resp.data.instance_url);
-            window.location.href =`${env.get('HOME_PAGE')}`
+
+            navigate(`${env.get('HOME_PAGE')}`)
           })
 }
 
@@ -34,8 +36,9 @@ const AuthComponent = () => {
     //products
 
   } else {
-      localStorage.setItem('oauth2-callback', `${window.location.href}`)
-      window.location.href = `${env.get('AUTHORAZION_URL')}?redirect_uri=${window.location.href}&client_id=${env.get('CLIENT_ID')}&response_type=code`
+     let oauth2Callback = env.get('OAUTH_CAlLBACK')
+     localStorage.setItem('oauth2-callback', `${oauth2Callback}`)
+      window.location.href = `${env.get('AUTHORAZION_URL')}?redirect_uri=${oauth2Callback}&client_id=${env.get('CLIENT_ID')}&response_type=code`
   }
 
 

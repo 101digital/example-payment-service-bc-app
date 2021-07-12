@@ -20,7 +20,7 @@ const getQuery = () => {
     'UN_number__c',
   ];
 
-  return `SELECT+${fieldsName.join(',')}+FROM ${objectName}`;
+  return `SELECT+${fieldsName.join(',')}+FROM ${objectName} WHERE IsDeleted=FALSE`;
 };
 
 const authHeader = () => {

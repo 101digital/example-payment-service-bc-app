@@ -76,7 +76,8 @@
     }
 
     handleAction(action) {
-       window.location = action.url
+      //console.log(action.url)
+      window.location = action.url
     }
 
     setStatus(status, details) {
